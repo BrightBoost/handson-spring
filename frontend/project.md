@@ -41,7 +41,7 @@ This entity represents a user in the system. It has an Long id, String name, Lis
 ---
 
 ### **3. `Issue` Entity (`Issue.java`)**
-This entity represents an issue connected to a user. It has an Long id, String description, String category, List<User> users.
+This entity represents an issue connected to a user. It has an Long id, String description, String category, User user.
 
 ---
 
