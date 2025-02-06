@@ -74,7 +74,7 @@ Handles business logic related to users. Give it the following methods (you'll n
 
 ---
 
-### **7. Issue Service (`IssueService.java`)**
+### **8. Issue Service (`IssueService.java`)**
 Handles business logic related to issues. Give it the following methods (you'll need to implement them).
 ```java
 
@@ -90,21 +90,21 @@ Handles business logic related to issues. Give it the following methods (you'll 
 
 ---
 
-### **8. User Controller (`UserController.java`)**
+### **9. User Controller (`UserController.java`)**
 Exposes REST endpoints for user operations Get and Post. Keep above url's in mind.
 
 Make sure to annotate the class with @CrossOrigin("*")
 
 ---
 
-### **9. Issue Controller (`IssueController.java`)**
+### **10. Issue Controller (`IssueController.java`)**
 Exposes REST endpoints for user operations Get, Put and Post. Keep above url's in mind.
 
 Make sure to annotate the class with @CrossOrigin("*")
 
 ---
 
-### **10. Final Steps**
+### **11. Final Steps**
 
 Almost done!
 
