@@ -45,22 +45,26 @@ This entity represents an issue connected to a user. It has an Long id, String d
 
 ---
 
-### **4. User Repository (`UserRepository.java`)**
+### **4. Create the DTOs for both the `Issue` Entity and `User` Entity**
+
+---
+
+### **5. User Repository (`UserRepository.java`)**
 Handles database operations for users.
 
 ---
 
-### **5. Issue Repository (`IssueRepository.java`)**
+### **6. Issue Repository (`IssueRepository.java`)**
 Handles database operations for issues.
 
 ---
 
-### **6. User Service (`UserService.java`)**
+### **7. User Service (`UserService.java`)**
 Handles business logic related to users. Give it the following methods (you'll need to implement them).
 
 ```java
 
-    public List<User> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
     }
 
     public User createUser(User user) {
@@ -74,16 +78,13 @@ Handles business logic related to users. Give it the following methods (you'll n
 Handles business logic related to issues. Give it the following methods (you'll need to implement them).
 ```java
 
-    public List<Issue> getAllIssues() {
+    public List<IssueDTO> getAllIssues() {
     }
 
-    public Optional<Issue> createIssue(Long userId, Issue issue) {
+    public Optional<IssueDTO> createIssue(Long userId, Issue issue) {
         
     }
 
-    public Optional<IssueDTO> updateIssue(Long issueId, Issue updatedIssue) {
-
-    }
 
 ```
 
