@@ -108,7 +108,7 @@ function Issues() {
             <li key={issue.id} className="p-2 border-b">
               <strong>{issue.description}</strong> - {issue.category}{" "}
               (User: {issue.userName ? issue.userName : "Unknown"})
-              <button onClick={() => startEditing(issue)}></button>
+              <button onClick={() => startEditing(issue)}>Update</button>
             </li>
           ))
         )}
