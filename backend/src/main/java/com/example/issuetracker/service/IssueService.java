@@ -7,6 +7,7 @@ import com.example.issuetracker.repository.IssueRepository;
 import com.example.issuetracker.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,6 +28,18 @@ public class IssueService {
                 .stream()
                 .map(IssueDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<IssueDTO> updateIssue(Long issueId, Issue updatedIssue) {
+        Optional<Issue> existingIssue = this.issueRepository.findById(issueId);
+        if(existingIssue.isPresent()) {
+            Issue issue = existingIssue.get();
+            issue.setDescription(updatedIssue.getDescription());
+            issue.setCategory(updatedIssue.getCategory());
+            return Optional.of(new IssueDTO(issueRepository.save(issue)));
+        } else {
+            return Optional.empty();
+        }
     }
 
     public Optional<IssueDTO> createIssue(Long userId, Issue issue) {

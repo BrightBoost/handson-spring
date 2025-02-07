@@ -40,4 +40,14 @@ public class IssueController {
             return ResponseEntity.badRequest().body("User not found");
         }
     }
+
+    @PutMapping("/{issueId}")
+    public ResponseEntity<?> updateIssue(@PathVariable Long issueId, @RequestBody Issue issue) {
+        Optional<IssueDTO> optionalIssueDTO = this.issueService.updateIssue(issueId, issue);
+        if(optionalIssueDTO.isPresent()) {
+            return ResponseEntity.ok(optionalIssueDTO.get());
+        } else {
+            return ResponseEntity.badRequest().body("User not found");
+        }
+    }
 }

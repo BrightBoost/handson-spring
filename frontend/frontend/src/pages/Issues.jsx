@@ -7,6 +7,7 @@ function Issues() {
   const [selectedUser, setSelectedUser] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [editingIssue, setEditingIssue] = useState(null);
 
   useEffect(() => {
     fetchUsers();
@@ -31,20 +32,35 @@ function Issues() {
     }
   };
 
-  const createIssue = async () => {
+  const createOrUpdateIssue = async () => {
     if (!selectedUser || !description.trim() || !category.trim()) return;
     try {
-      await axios.post(
-        `http://localhost:8080/api/issues/${selectedUser}`,
-        { description, category },
-        { headers: { "Content-Type": "application/json" } }
-      );
+      if (!editingIssue) {
+        await axios.post(
+          `http://localhost:8080/api/issues/${selectedUser}`,
+          { description, category },
+          { headers: { "Content-Type": "application/json" } }
+        );
+      } else {
+        await axios.put(
+          `http://localhost:8080/api/issues/${editingIssue.id}`,
+          { description, category },
+          { headers: { "Content-Type": "application/json" } }
+        );
+      }
       setDescription("");
       setCategory("");
+      setEditingIssue(null);
       fetchIssues();
     } catch (error) {
       console.error("Error creating issue:", error);
     }
+  };
+
+  const startEditing = (issue) => {
+    setEditingIssue(issue);
+    setDescription(issue.description);
+    setCategory(issue.category);
   };
 
   return (
@@ -78,10 +94,10 @@ function Issues() {
           className="border p-2 mr-2"
         />
         <button
-          onClick={createIssue}
+          onClick={createOrUpdateIssue}
           className="px-4 py-2 bg-green-500 text-white rounded"
         >
-          Add Issue
+          {editingIssue ? "Update issue" : "Add issue"}
         </button>
       </div>
       <ul className="mt-4">
@@ -92,6 +108,7 @@ function Issues() {
             <li key={issue.id} className="p-2 border-b">
               <strong>{issue.description}</strong> - {issue.category}{" "}
               (User: {issue.userName ? issue.userName : "Unknown"})
+              <button onClick={() => startEditing(issue)}></button>
             </li>
           ))
         )}
